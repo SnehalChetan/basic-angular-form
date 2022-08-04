@@ -1,5 +1,15 @@
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+.idea
+friendBook/package-lock.json
+friendBook/package.json
+friendBook/src/
+friendBook/tsconfig.app.json
+friendBook/tsconfig.json
+friendBook/tsconfig.spec.json
+package-lock.json
+package.json
+server.js
 # Compiled output
 /dist
 /tmp

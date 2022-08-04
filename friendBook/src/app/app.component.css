@@ -1,0 +1,20 @@
+
+
+/**
+* for error class
+ */
+.cssErrorClass{
+  border-color:red;
+}
+.form-outline{
+    margin: 10px;
+    margin-left: 30px;
+
+}
+.form-outline input{
+    border : 1px solid white;
+}
+
+#friendDataForm {
+    margin-top: 75px;
+}

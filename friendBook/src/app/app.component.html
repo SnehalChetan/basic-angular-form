@@ -1,0 +1,141 @@
+{{ friendFormName.value | json }}
+<!--Section: Contact v.2-->
+<section class="mb-4 container">
+
+  <!--Section heading-->
+  <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+  <!--Section description-->
+
+
+  <div class="row">
+
+    <!--Grid column-->
+    <div class="col-md-12 mb-md-0 mb-5">
+      <form id="contact-form" name="contact-form" #friendFormName="ngForm">
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-6">
+            <div class="md-form mb-0">
+              <!-- <input #inputName="ngModel" ngModel type="text" id="FirstName" name="FirstName" class="form-control"> -->
+              <input #firstName="ngModel"
+                     [(ngModel)]="myfriend.firstName"
+                     type="text"
+                     id="firstName"
+                     name="firstName"
+                     class="form-control"
+                     required
+                     pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+                     [class.cssErrorClass]="firstName.invalid && firstName.touched">
+                     <!-- this cssErrorClass is from css file not from angular class
+                     -->
+              <label for="firstName" class="">First Name</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+          <!--Grid column-->
+          <div class="col-md-6">
+            <div class="md-form mb-0">
+              <!-- <input #inputName="ngModel" ngModel type="text" id="LastName" name="lastName" class="form-control"> -->
+              <input #lastName="ngModel"
+                     [(ngModel)]="myfriend.lastName"
+                     type="text"
+                     id="lastName"
+                     name="lastName"
+                     class="form-control"
+                     required
+                     pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
+                     [class.cssErrorClass]="lastName.invalid && lastName.touched">
+              <label for="lastName" class="">Last Name</label>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="md-form mb-0">
+              <!-- <input #inputName="ngModel" ngModel type="tel" id="phone" name="phone" class="form-control"> -->
+              <input #phone="ngModel"
+                     [(ngModel)]="myfriend.phone"
+                     type="text"
+                     id="phone" 
+                     name="phone"
+                     class="form-control"
+                     required
+                     [class.cssErrorClass]="phone.invalid && phone.touched">
+              <label for="phone" class="">Phone Number</label>
+            </div>
+          </div>
+          <!--Grid column-->
+
+        </div>
+        <!--Grid row-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="md-form mb-0">
+              <!-- <input #inputName="ngModel" ngModel type="text" id="email" name="subject" class="form-control"> -->
+              <input #email="ngModel"
+                     [(ngModel)]="myfriend.email"
+                     type="text"
+                     id="email"
+                     name="email"
+                     class="form-control"
+                     required
+                     pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
+                     [class.cssErrorClass]="email.invalid && email.touched">
+              <label for="email" class="">Email</label>
+            </div>
+          </div>
+        </div>
+
+        <!--Grid row-->
+        <div class="row">
+          <div class="col-md-12">
+            <div class="md-form mb-0">
+              <label for="languages">Choose your favourite language</label>
+              <select #inputName="ngModel" ngModel id="languages" name="cars" >
+                <option  *ngFor="let lang of languages" value="{{lang}}">{{lang}}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!--Grid row-->
+
+        <!--Grid row-->
+        <div class="row">
+
+          <!--Grid column-->
+          <div class="col-md-12">
+
+            <div class="md-form">
+              <!-- <textarea #inputName="ngModel" ngModel type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea> -->
+              <textarea #message="ngModel"
+                     [(ngModel)]="myfriend.message"
+                     type="text"
+                     id="message"
+                     name="message"
+                     class="form-control md-textarea"
+                     required>
+                     <!-- [class.cssErrorClass]="myfriend.invalid && myfriend.touched"> -->
+                    </textarea>
+              <label for="message">Your message</label>
+            </div>
+
+          </div>
+        </div>
+        <!--Grid row-->
+
+      </form>
+
+      <div class="text-center text-md-left">
+        <button name="send" id="send"  class="btn border border-primary">Send</button>
+      </div>
+      <div class="status"></div>
+    </div>
+    <!--Grid column-->
+
+  </div>
+
+</section>
+<!--Section: Contact v.2-->
