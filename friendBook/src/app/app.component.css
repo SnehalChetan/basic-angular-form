@@ -18,3 +18,11 @@
 #friendDataForm {
     margin-top: 75px;
 }
+/* .inputDiv{
+    margin-top: 25px;;
+} */
+.inputDiv div{
+    color: red;
+    font-size:14px;
+    margin-bottom: 15px;;
+}

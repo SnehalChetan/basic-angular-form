@@ -10,6 +10,25 @@ friendBook/tsconfig.spec.json
 package-lock.json
 package.json
 server.js
+
+
+../.idea/
+.browserslistrc
+.editorconfig
+.vscode/
+README.md
+angular.json
+karma.conf.js
+src/assets/
+src/environments/
+src/polyfills.ts
+src/test.ts
+tsconfig.app.json
+tsconfig.json
+tsconfig.spec.json
+../package-lock.json
+../package.json
+../server.js
 # Compiled output
 /dist
 /tmp

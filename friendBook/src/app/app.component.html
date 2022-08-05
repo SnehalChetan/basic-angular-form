@@ -1,4 +1,4 @@
-{{ friendFormName.value | json }}
+{{ friendContactForm.value | json }}
 <!--Section: Contact v.2-->
 <section class="mb-4 container">
 
@@ -6,135 +6,148 @@
   <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
   <!--Section description-->
 
-
   <div class="row">
-
     <!--Grid column-->
     <div class="col-md-12 mb-md-0 mb-5">
-      <form id="contact-form" name="contact-form" #friendFormName="ngForm">
-
+      <form id="contact-form" name="friendContactForm" #friendContactForm="ngForm">
         <!--Grid row-->
         <div class="row">
-
           <!--Grid column-->
           <div class="col-md-6">
-            <div class="md-form mb-0">
-              <!-- <input #inputName="ngModel" ngModel type="text" id="FirstName" name="FirstName" class="form-control"> -->
-              <input #firstName="ngModel"
-                     [(ngModel)]="myfriend.firstName"
-                     type="text"
-                     id="firstName"
-                     name="firstName"
-                     class="form-control"
-                     required
-                     pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
-                     [class.cssErrorClass]="firstName.invalid && firstName.touched">
-                     <!-- this cssErrorClass is from css file not from angular class
-                     -->
+            <div class="md-form mb-0 inputDiv mt-4">
               <label for="firstName" class="">First Name</label>
+              <input type="text" id="firstName" name="firstName" class="form-control"
+                     required minlength="4"
+                     #firstName="ngModel" [(ngModel)]="myfriend.firstName"
+                     pattern="[a-zA-Z ]+">
+              <!--  [class.cssErrorClass]="firstName.invalid && (firstName.dirty || firstName.touched)">
+               [class.cssErrorClass]="firstName.invalid && firstName.touched" -->
+              <!-- this cssErrorClass is from css file not from angular class
+              -->
+              <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                   class="cssErrorClass">
+                <div *ngIf="firstName?.errors?.['required']">
+                  First Name is required.
+                </div>
+                <div *ngIf="firstName?.errors?.['pattern']">
+                  Please only use alphabets.
+                </div>
+                <div *ngIf="firstName?.errors?.['minlength']">
+                  Name must be at least 4 characters long.
+                </div>
+              </div>
             </div>
           </div>
           <!--Grid column-->
-
-          <!--Grid column-->
           <div class="col-md-6">
-            <div class="md-form mb-0">
-              <!-- <input #inputName="ngModel" ngModel type="text" id="LastName" name="lastName" class="form-control"> -->
-              <input #lastName="ngModel"
-                     [(ngModel)]="myfriend.lastName"
-                     type="text"
-                     id="lastName"
-                     name="lastName"
-                     class="form-control"
-                     required
-                     pattern="\b([A-ZÀ-ÿ][-,a-z. ']+[ ]*)+"
-                     [class.cssErrorClass]="lastName.invalid && lastName.touched">
+            <div class="md-form mb-0 inputDiv mt-4">
+
               <label for="lastName" class="">Last Name</label>
+              <input type="text" id="lastName" name="lastName" class="form-control" required #lastName="ngModel"
+                     [(ngModel)]="myfriend.lastName"
+                     pattern="[a-zA-Z ]+">
+              <!-- [class.cssErrorClass]="lastName.invalid && lastName.touched" -->
+              <div *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                   class="cssErrorClass">
+                <div *ngIf="lastName?.errors?.['required']">
+                  Last Name is required.
+                </div>
+                <div *ngIf="lastName?.errors?.['pattern']">
+                  Please only use alphabets.
+                </div>
+              </div>
             </div>
           </div>
-
           <div class="col-md-6">
-            <div class="md-form mb-0">
-              <!-- <input #inputName="ngModel" ngModel type="tel" id="phone" name="phone" class="form-control"> -->
-              <input #phone="ngModel"
-                     [(ngModel)]="myfriend.phone"
-                     type="text"
-                     id="phone" 
-                     name="phone"
-                     class="form-control"
-                     required
-                     [class.cssErrorClass]="phone.invalid && phone.touched">
+            <div class="md-form mb-0 inputDiv mt-4">
               <label for="phone" class="">Phone Number</label>
+              <input type="text" id="phone" name="phone" class="form-control" required
+                     #phone="ngModel" [(ngModel)]="myfriend.phone"
+                     pattern="^(((\+|00)32[ ]?(?:\(0\)[ ]?)?)|0){1}(4(60|[789]\d)\/?(\s?\d{2}\.?){2}(\s?\d{2})|(\d\/?\s?\d{3}|\d{2}\/?\s?\d{2})(\.?\s?\d{2}){2})$">
+              <!-- [class.cssErrorClass]="phone.invalid && phone.touched" -->
+              <div *ngIf="phone.invalid && (phone.dirty || phone.touched)"
+                   class="cssErrorClass">
+                <div *ngIf="phone?.errors?.['required']">
+                  phone number is required.
+                </div>
+                <div *ngIf="phone?.errors?.['pattern']">
+                  Please enter valid phone number.
+                </div>
+              </div>
             </div>
           </div>
           <!--Grid column-->
-
         </div>
         <!--Grid row-->
         <div class="row">
           <div class="col-md-12">
-            <div class="md-form mb-0">
+            <div class="md-form mb-0 inputDiv mt-4">
               <!-- <input #inputName="ngModel" ngModel type="text" id="email" name="subject" class="form-control"> -->
-              <input #email="ngModel"
-                     [(ngModel)]="myfriend.email"
-                     type="text"
-                     id="email"
-                     name="email"
-                     class="form-control"
-                     required
-                     pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'
-                     [class.cssErrorClass]="email.invalid && email.touched">
               <label for="email" class="">Email</label>
+              <input type="text" id="email" name="email" class="form-control" required
+                     #email="ngModel" [(ngModel)]="myfriend.email"
+                     pattern='^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$'>
+              <!-- [class.cssErrorClass]="email.invalid && email.touched" -->
+              <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                   class="cssErrorClass">
+                <div *ngIf="email?.errors?.['required']">
+                  Email is required.
+                </div>
+                <div *ngIf="email?.errors?.['pattern']">
+                  Please enter correct Email address.
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
         <!--Grid row-->
         <div class="row">
           <div class="col-md-12">
-            <div class="md-form mb-0">
-              <label for="languages">Choose your favourite language</label>
-              <select #inputName="ngModel" ngModel id="languages" name="cars" >
-                <option  *ngFor="let lang of languages" value="{{lang}}">{{lang}}</option>
+            <div class="md-form mb-0 inputDiv mt-4">
+              <label for="language">Choose your favourite language</label>
+              <select id="language" name="language" class="form-select" required
+                      #language="ngModel" [(ngModel)]="myfriend.language">
+                <!-- <option selected>Open this select menu</option> -->
+                <option *ngFor="let lang of languages" value="{{lang}}">{{lang}}</option>
               </select>
+              <div *ngIf="language.invalid && (language.dirty || language.touched)"
+                   class="cssErrorClass">
+                <div *ngIf="language.errors?.['required']">
+                  language is required.
+                </div>
+              </div>
             </div>
           </div>
         </div>
+        <br/>
         <!--Grid row-->
-
         <!--Grid row-->
         <div class="row">
 
           <!--Grid column-->
           <div class="col-md-12">
 
-            <div class="md-form">
+            <div class="md-form mt-4">
               <!-- <textarea #inputName="ngModel" ngModel type="text" id="message" name="message" rows="2" class="form-control md-textarea"></textarea> -->
-              <textarea #message="ngModel"
-                     [(ngModel)]="myfriend.message"
-                     type="text"
-                     id="message"
-                     name="message"
-                     class="form-control md-textarea"
-                     required>
+              <label for="message">Your message</label>
+              <textarea type="text" id="message" name="message" class="form-control md-textarea"
+                        required #message="ngModel"
+                        [(ngModel)]="myfriend.message">
                      <!-- [class.cssErrorClass]="myfriend.invalid && myfriend.touched"> -->
                     </textarea>
-              <label for="message">Your message</label>
             </div>
-
           </div>
         </div>
         <!--Grid row-->
-
+        <div class="text-center text-md-left mt-4">
+           <button name="send" id="send"  class="btn btn-outline-primary"
+          [disabled]="friendContactForm.form.invalid"
+          >Send</button> <!---->
+        </div>
+        <div class="status"></div>
       </form>
-
-      <div class="text-center text-md-left">
-        <button name="send" id="send"  class="btn border border-primary">Send</button>
-      </div>
-      <div class="status"></div>
     </div>
     <!--Grid column-->
-
   </div>
 
 </section>
