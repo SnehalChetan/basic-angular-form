@@ -21,19 +21,37 @@ export class AppComponent {
    * create a new friend
    */
   myfriend = new Friend("","","","",0,"");
+  allFriends: Friend[] = [];
 
   /**
    * constructor for language dropdown
    */
 
   constructor(private _addFriendService: AddFriendService) {}
+
+  /**
+   * on page load get all friends list
+   */
+  ngOnInit(){
+    this.getFriends('http://localhost:6969/allFriends').then(()=>console.log(this.allFriends));
+  }
   /**
    * method to submit a form with validation
    */
-   submitFriendForm () {
-    //console.log(this.myfriend);
-    let observables = this._addFriendService.addFriend(this.myfriend);
-    //console.log(observables);
-    observables.subscribe(data=>console.log(data), error=>console.log(error));
+  submitFriendForm() {
+    let component = this;
+    this._addFriendService.addFriend(this.myfriend).subscribe({
+      next(x) { component.getFriends('http://localhost:6969/allFriends').then(()=>console.log(component.allFriends))},
+      error(err) { console.error('something wrong occurred: ' + err); },
+      complete() { console.log('done'); }
+    });
+  }
+
+  /**
+   *
+   */
+   public async getFriends(url:string): Promise<any>{
+    let response = await fetch(url,{method:'GET',headers:{'content-type':'application/json'}});
+    this.allFriends = await response.json();
   }
 }
